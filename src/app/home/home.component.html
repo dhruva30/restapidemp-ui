@@ -1,0 +1,55 @@
+<h3 style="text-align: center;">Posts</h3>
+<div class="container">
+    <div class="form-group">
+        <label for="postId">Enter a Post Id for a specific post</label>
+        <input type="text" class="form-control-range" id="postId" [(ngModel)] = "postId"><br>
+        <button class="btn btn-primary" (click)="getPost()">Search</button>
+      </div>
+      <div *ngIf="postNotFound">
+        <p style="color: red;font-size: large;">Post Not Found</p>
+      </div>  
+    <div *ngIf="showPosts">
+      <div class="card" *ngFor="let post of posts">
+        <div class="card-body">
+          <h4 class="card-title">{{post.title}}</h4>
+          <p>{{post.body}}</p>
+          <br>
+          <div class="card-footer"><span>PostId: {{post.id}}</span>
+          &nbsp;
+          <span>UserId: {{post.userId}}</span>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="getComments(post.id)">View / Hide Comments</button>
+        <div *ngFor='let comment of comments[post.id]' style="margin-top: 1%;"> 
+         <div class="card">
+           <div class="card-body">
+             {{comment.body}}
+           </div>
+           <div class="card-footer">
+             {{comment.name}}
+             <span style="float: right;">
+               {{comment.email}}
+             </span>
+           </div>
+         </div>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!showPosts">
+        <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">{{specificPost.title}}</h4>
+              <p>{{specificPost.body}}</p>
+              <br>
+              
+              <div class="card-footer"><span>PostId: {{specificPost.id}}</span>
+              &nbsp;
+              <span>UserId: {{specificPost.userId}}</span>
+            </div>
+            </div>
+          </div>
+          <br>
+          <button class="btn btn-primary" (click) = "backToPosts()">Back To Posts</button>
+    </div>
+  </div>

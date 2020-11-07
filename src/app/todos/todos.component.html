@@ -1,0 +1,16 @@
+<h3 style="text-align: center;">ToDos</h3>
+<div class="container">
+    <div class="card" *ngFor="let todo of todos">
+        <div class="card-body">
+            {{todo.title}}
+            <span style="float: right;">
+            <span *ngIf="todo.completed" style="color: green;">
+                Completed
+            </span>
+            <span *ngIf="!todo.completed" style="color: red;">
+                Not Completed
+            </span>
+            </span>
+        </div>
+    </div>
+</div>
